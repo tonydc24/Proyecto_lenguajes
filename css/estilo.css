@@ -153,10 +153,7 @@ a{
     box-shadow: 0 -1rem 0 var(--secondary-color);
 }
 
-.agregar{
-display: flex;
-align-items: end;
-}
+
 
 /*gastos*/
 

@@ -16,14 +16,14 @@
         <div>
             <form class="form-gastos">
                 <h1 class="title">Solicitud de compra</h1>
-                <fieldset disabled>
+                <!-- <fieldset disabled>
                     <div class="form-group row">
                         <div class="col-auto">
                             <label for="disabledTextInput">Comprobante</label>
                             <input type="text" id="disabledTextInput" class="form-control" placeholder="Id : 01">
                         </div>
                     </div>
-                </fieldset>
+                </fieldset> -->
                 <div class="form-group row">
                     <div class="col-auto">
                         <label class="form-label" for="monto">Monto</label>
@@ -55,13 +55,15 @@
                     </div>
                 </div>
             </form>
+           
         </div>
         <div id="exito">
 
-        </div>
+</div>
     </main>
     <script src="js/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/gastos.js"></script>
 </div>
 

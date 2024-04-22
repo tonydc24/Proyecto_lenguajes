@@ -1,12 +1,9 @@
 <?php
 include 'conexion.php';
 
-// Función para obtener los centros de costos de un usuario y devolverlos como JSON
 function obtenerCentrosCostosUsuario($id_usuario){
-    // Obtener la conexión a la base de datos utilizando la función Conecta() del archivo de conexión
     $conn = Conecta();
 
-    // Verificar la conexión
     if (!$conn) {
         return json_encode(array("error" => "Error de conexión a la base de datos."));
     }
@@ -16,7 +13,6 @@ function obtenerCentrosCostosUsuario($id_usuario){
 
     oci_bind_by_name($stmt, ":id_usuario", $id_usuario);
 
-    // Vincula el parámetro de salida como VARCHAR2 de longitud máxima 100 (ajusta según sea necesario)
     $p_id_centro_costo = null;
     oci_bind_by_name($stmt, ":nombre_centro", $p_id_centro_costo, 100); 
 
@@ -34,12 +30,37 @@ function obtenerCentrosCostosUsuario($id_usuario){
     oci_free_statement($stmt);
     Desconectar($conn);
 
-    // Devuelve el resultado como un array asociativo
     return json_encode(array("nombre_centro" => $p_id_centro_costo));
 }
 
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
     echo obtenerCentrosCostosUsuario($id);
+}
+
+function modificarPresupuesto($centro_origen_id, $centro_destino_id, $monto_modificacion) {
+    $conn = Conecta();
+
+    $stmt = oci_parse($conn, 'BEGIN :resultado := modificar_presupuesto(:centro_origen_id, :centro_destino_id, :monto_modificacion); END;');
+
+    oci_bind_by_name($stmt, ':resultado', $resultado, 200);
+    oci_bind_by_name($stmt, ':centro_origen_id', $centro_origen_id);
+    oci_bind_by_name($stmt, ':centro_destino_id', $centro_destino_id);
+    oci_bind_by_name($stmt, ':monto_modificacion', $monto_modificacion);
+
+    oci_execute($stmt);
+
+    oci_free_statement($stmt);
+
+    Desconectar($conn);
+
+    return json_encode($resultado);
+}
+
+if (isset($_POST['centro1'],$_POST['centro2'],$_POST['monto'])) {
+    $centro1 = $_POST['centro1'];
+    $centro2 = $_POST['centro2'];
+    $monto = $_POST['monto'];
+    echo modificarPresupuesto($centro1,$centro2,$monto);
 }
 
