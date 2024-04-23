@@ -3,11 +3,9 @@ $(document).ready(function(){
    
         event.preventDefault();
         
-        // Obtener los valores del formulario
         var username = $("#username").val();
         var password = $("#password").val();
         
-        // Realizar la petición AJAX
         $.ajax({
             type: "POST",
             url: "DAL/procedimientos.php", 

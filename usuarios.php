@@ -43,8 +43,6 @@ if (isset($_SESSION['usuario']['login']) && $_SESSION['usuario']['login'] !== tr
             </div>
         </div>
     </div>
-
-
     <?php
     require_once "templates/header.html";
     ?>

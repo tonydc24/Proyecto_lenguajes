@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php'; // Asegúrate de incluir tu archivo de conexión
+include 'conexion.php'; 
 
 function solicitarPermisoCompra($usuario_id, $rubro_id, $cantidad, $monto) {
     $conn = Conecta();
@@ -37,10 +37,6 @@ if(isset($_POST['id_user'], $_POST['rubro'] , $_POST['cantidad'] , $_POST['monto
     $monto = $_POST['monto'];
     echo solicitarPermisoCompra($id, $rubro,$cantidad,$monto);
 } 
-
-
-
-
 
 
 function validarLogin($username, $password) {
